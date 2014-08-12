@@ -22,7 +22,21 @@ sigma = 0.3;
 %  Note: You can compute the prediction error using 
 %        mean(double(predictions ~= yval))
 %
-
+Crange = [0 0.01 0.03 0.1 0.3 1 3 10 30];
+sigRange =[0 0.01 0.03 0.1 0.3 1 3 10 30]; 
+minErr = 1;
+for c = Crange
+	for sig = sigRange
+		model = svmTrain(X,y,c,@(x1,x2) gaussianKernel(x1,x2,sig));
+		pr = svmPredict(model,Xval);
+		err = mean(double(pr ~= yval));
+		if (err < minErr)
+			minErr = err;
+			C = c
+		        sigma = sig
+		endif
+	end
+end
 
 
 

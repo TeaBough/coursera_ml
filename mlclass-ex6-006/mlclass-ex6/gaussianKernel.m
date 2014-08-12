@@ -15,8 +15,8 @@ sim = 0;
 %               sigma
 %
 %
-
-
+sigCar = sigma^2;
+sim  = exp(-((sum((x2 - x1).**2))/(2*sigCar)));
 
 
 
