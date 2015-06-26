@@ -20,8 +20,20 @@ idx = zeros(size(X,1), 1);
 %
 % Note: You can use a for-loop over the examples to compute this.
 %
-
-
+centroids
+for i = 1:size(X,1)
+	min = 100000;
+	id = 0;
+	for j = 1:K
+		d = norm(centroids(j,:) - X(i,:));
+		if (d<min)
+			min = d;
+			id = j;
+		end
+	end
+	idx(i,1) = id;
+end
+%centroids - ones(1,size(1,X))
 
 
 
